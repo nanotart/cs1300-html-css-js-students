@@ -1,3 +1,4 @@
+
 // Make a GET request to the fruityvice api to retrieve some fruit data
 const apiRequest = async () => {
   const BASE_URL = 'https://www.fruityvice.com/api/'
@@ -14,26 +15,42 @@ const apiRequest = async () => {
       'Content-Type': 'application/json',
     }
   });
-
-  // console.log(response);
+  
+  console.log(response);
 
   // Return the response in JSON format
   return response.json();
 }
 
 const updatePage = async () => {
+  // console.log("clicked")
   const gallery = document.getElementById('cs1300-gallery');
 
   // Make API request and get an array of fruit objects
   const fruitsArray = await apiRequest();
-  // console.log(fruitsArray);
+  console.log(fruitsArray);
 
   // TODO: Use either `map` and/or `filter` to extract some data from the array of fruit objects
   // For example, find "name of all fruits whose sugar > 15",
 
-  // TODO: Create a new HTML element to display your data
+  const fruitNames = fruitsArray.map(fruit => {
+    // console.log(fruit)
+    const ele = document.createElement('div')
+    ele.innerHTML = (fruit.name)
 
+    return ele
+  })
+
+  console.log(fruitNames)``
+
+  // TODO: Create a new HTML element to display your data
+  const data = document.createElement('div')
+  data.classList.add("fruits")
+  fruitNames.map(element => {
+    data.appendChild(element)
+  })
   // TODO: Append your new element to the page
+  document.getElementById("cs1300-gallery").appendChild(data)
 
 }
 
